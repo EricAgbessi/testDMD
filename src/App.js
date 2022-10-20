@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Acceuil from './pages/Acceuil';
+import Connexion from './pages/Connexion';
+import Register from './pages/Register';
+import { BrowserRouter as Router } from 'react-router-dom';
+import {Routes,Route} from 'react-router-dom';
+import { createContext } from 'react';
+import RouteProtector from './components/RouteProtector';
+
+
+
 
 function App() {
+
+  const token =createContext("")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <Router>
+        <Routes>
+            <Route path="/" element={ <Connexion /> } />
+        </Routes>
+
+        <Routes>
+          <Route element={<RouteProtector />}>
+            <Route path="/home" element={ <Acceuil /> }  />
+          </Route>
+        </Routes>
+    </Router>
+      
+      
+    </>
+    
+    
+  )
 }
 
 export default App;
